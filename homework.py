@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 
+
 def toFixed(numObj, digits=0):
     """
     Функция для округления с фиксированным числом знаков после запятой,
@@ -8,12 +9,13 @@ def toFixed(numObj, digits=0):
     """
     return f"{numObj:.{digits}f}"
 
+
 @dataclass
 class InfoMessage:
     """Информационное сообщение о тренировке."""
     training_type: str
     duration: float
-    distance: float         
+    distance: float
     speed: float
     calories: float
 
@@ -51,9 +53,8 @@ class Training:
 
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
-        raise NotImplementedError(
-             'Определите get_spent_calories в %s.' % (self.__class__.__name__)
-        )
+        raise NotImplementedError('Определите get_spent_calories в %s.'
+                                  % (self.__class__.__name__))
 
     def show_training_info(self) -> InfoMessage:
         """Вернуть информационное сообщение о выполненной тренировке."""
