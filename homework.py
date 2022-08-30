@@ -148,7 +148,11 @@ class Swimming(Training):
 def read_package(workout_type: str, data: list) -> Training:
     """Прочитать данные полученные от датчиков."""
     workout_type_dict = {'SWM': Swimming, 'WLK': SportsWalking, 'RUN': Running}
-    return workout_type_dict[workout_type](*data)
+    try:
+        return workout_type_dict[workout_type](*data)
+    except KeyError:
+        raise KeyError(f'Тренировки {workout_type} не существует.'
+                       ' Проверьте правильность введённых данных')
 
 
 def main(training: Training) -> None:
