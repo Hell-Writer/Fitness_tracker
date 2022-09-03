@@ -145,7 +145,7 @@ def read_package(workout_type: str, data: list) -> Training:
         return workout_type_dict[workout_type](*data)
     except KeyError:
         raise ValueError(f'Тренировки {workout_type} не существует.'
-                       ' Проверьте правильность введённых данных')
+                         ' Проверьте правильность введённых данных')
 
 
 def main(training: Training) -> None:
