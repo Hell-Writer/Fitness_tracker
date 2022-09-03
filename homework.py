@@ -144,7 +144,7 @@ def read_package(workout_type: str, data: list) -> Training:
     try:
         return workout_type_dict[workout_type](*data)
     except KeyError:
-        raise KeyError(f'Тренировки {workout_type} не существует.'
+        raise ValueError(f'Тренировки {workout_type} не существует.'
                        ' Проверьте правильность введённых данных')
 
 
@@ -158,9 +158,12 @@ if __name__ == '__main__':
     packages = [
         ('SWM', [720, 1, 80, 25, 40]),
         ('RUN', [1206, 12, 6]),
-        ('WLK', [9000, 1, 75, 180]),
+        ('WLK', [9000, 10, 75, 180]),
     ]
 
     for workout_type, data in packages:
-        training = read_package(workout_type, data)
-        main(training)
+        try:
+            training = read_package(workout_type, data)
+            main(training)
+        except ValueError:
+            print('Ошибка! Проверьте правильность введённых данных')
